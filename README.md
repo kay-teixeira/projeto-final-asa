@@ -20,21 +20,21 @@ projeto-final-asa/\
 |---- Dockerfile\
 |---- docker-compose.yaml\
 |---- microservicos/\
-|&nbsp;|---- main.py\
-| |---- models/\
-| |---- routers/\
-| | |---- aeroportos.py\
-| | |---- autenticacao.py\
-| | |---- cancelamentos.py\
-| | |---- reservas.py\
-| | |---- voos.py\
-| |---- schemas/\
-| |---- database.py\
+|&nbsp;&nbsp;&nbsp;&nbsp;|---- main.py\
+|&nbsp;&nbsp;&nbsp;&nbsp;|---- models/\
+|&nbsp;&nbsp;&nbsp;&nbsp;|---- routers/\
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|---- aeroportos.py\
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|---- autenticacao.py\
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|---- cancelamentos.py\
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|---- reservas.py\
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|---- voos.py\
+|&nbsp;&nbsp;&nbsp;&nbsp;|---- schemas/\
+|&nbsp;&nbsp;&nbsp;&nbsp;|---- database.py\
 |---- k8s/\
-| |---- app-deployment.yaml\
-| |---- app-service.yaml\
-| |---- postgres-deployment.yaml\
-| |---- postgres-service.yaml\
+|&nbsp;&nbsp;&nbsp;&nbsp;|---- app-deployment.yaml\
+|&nbsp;&nbsp;&nbsp;&nbsp;|---- app-service.yaml\
+|&nbsp;&nbsp;&nbsp;&nbsp;|---- postgres-deployment.yaml\
+|&nbsp;&nbsp;&nbsp;&nbsp;|---- postgres-service.yaml\
 |---|---- pgadmin.yaml\
 
 ## Funcionalidades:
@@ -47,7 +47,7 @@ projeto-final-asa/\
 
 ## Como executar com Docker Compose:
 
-  docker-compose up --build
+&nbsp;&nbsp;&nbsp;&nbsp; docker-compose up --build
 
 => Acesse a documentação da API: http://localhost:5000/docs
   
@@ -55,25 +55,25 @@ projeto-final-asa/\
 
 1. Inicie o Minikube:
 
-  minikube start --driver=docker
+&nbsp;&nbsp;&nbsp;&nbsp; minikube start --driver=docker
 
-  eval $(minikube docker-env)
+&nbsp;&nbsp;&nbsp;&nbsp; eval $(minikube docker-env)
 
 2. Construa a imagem:
 
-  docker build -t minikube_projeto_final_app:latest .
+&nbsp;&nbsp;&nbsp;&nbsp; docker build -t minikube_projeto_final_app:latest .
 
 3. Aplique os manifestos Kubernetes:
 
-  kubectl apply -f k8s/
+&nbsp;&nbsp;&nbsp;&nbsp; kubectl apply -f k8s/
 
 4. Verifique se os pods estão rodando:
 
-  kubectl get pods
+&nbsp;&nbsp;&nbsp;&nbsp;kubectl get pods
 
 5. Quando todos estiverem como **Running**, acesse a API:
 
-  minikube service fastapi-service
+&nbsp;&nbsp;&nbsp;&nbsp; minikube service fastapi-service
 
 ## Requisitos:
 
