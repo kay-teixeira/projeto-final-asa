@@ -47,33 +47,33 @@ projeto-final-asa/\
 
 ## Como executar com Docker Compose:
 
-- docker-compose up --build
+  docker-compose up --build
 
 => Acesse a documentação da API: http://localhost:5000/docs
-
+  
 ## Como executar com Minikube:
 
 1. Inicie o Minikube:
 
-minikube start --driver=docker
+  minikube start --driver=docker
 
-eval $(minikube docker-env)
+  eval $(minikube docker-env)
 
 2. Construa a imagem:
 
-- docker build -t minikube_projeto_final_app:latest .
+  docker build -t minikube_projeto_final_app:latest .
 
 3. Aplique os manifestos Kubernetes:
 
-- kubectl apply -f k8s/
+  kubectl apply -f k8s/
 
 4. Verifique se os pods estão rodando:
 
-- kubectl get pods
+  kubectl get pods
 
 5. Quando todos estiverem como **Running**, acesse a API:
 
-- minikube service fastapi-service
+  minikube service fastapi-service
 
 ## Requisitos:
 
