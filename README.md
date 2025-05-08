@@ -53,25 +53,25 @@ projeto-final-asa/\
   
 ## Como executar com Minikube:
 
-1. Inicie o Minikube:
+**1. Inicie o Minikube:**
 
 &nbsp;&nbsp;&nbsp;&nbsp; minikube start --driver=docker
 
 &nbsp;&nbsp;&nbsp;&nbsp; eval $(minikube docker-env)
 
-2. Construa a imagem:
+**2. Construa a imagem:**
 
 &nbsp;&nbsp;&nbsp;&nbsp; docker build -t minikube_projeto_final_app:latest .
 
-3. Aplique os manifestos Kubernetes:
+**3. Aplique os manifestos Kubernetes:**
 
 &nbsp;&nbsp;&nbsp;&nbsp; kubectl apply -f k8s/
 
-4. Verifique se os pods estão rodando:
+**4. Verifique se os pods estão rodando:**
 
-&nbsp;&nbsp;&nbsp;&nbsp;kubectl get pods
+&nbsp;&nbsp;&nbsp;&nbsp; kubectl get pods
 
-5. Quando todos estiverem como **Running**, acesse a API:
+**5. Quando todos estiverem como _Running_, acesse a API:**
 
 &nbsp;&nbsp;&nbsp;&nbsp; minikube service fastapi-service
 
