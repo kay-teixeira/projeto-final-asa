@@ -16,26 +16,26 @@ Este é um sistema completo de venda de passagens aéreas desenvolvido utilizand
 
 ## Estrutura dos Microserviços:
 
-projeto-final-asa/
-|---- Dockerfile
-|---- docker-compose.yaml
-|---- microservicos/
-| |---- main.py
-| |---- models/
-| |---- routers/
-| | |---- aeroportos.py
-| | |---- autenticacao.py
-| | |---- cancelamentos.py
-| | |---- reservas.py
-| | |---- voos.py
-| |---- schemas/
-| |---- database.py
-|---- k8s/
-| |---- app-deployment.yaml
-| |---- app-service.yaml
-| |---- postgres-deployment.yaml
-| |---- postgres-service.yaml
-|---|---- pgadmin.yaml
+projeto-final-asa/\
+|---- Dockerfile\
+|---- docker-compose.yaml\
+|---- microservicos/\
+| |---- main.py\
+| |---- models/\
+| |---- routers/\
+| | |---- aeroportos.py\
+| | |---- autenticacao.py\
+| | |---- cancelamentos.py\
+| | |---- reservas.py\
+| | |---- voos.py\
+| |---- schemas/\
+| |---- database.py\
+|---- k8s/\
+| |---- app-deployment.yaml\
+| |---- app-service.yaml\
+| |---- postgres-deployment.yaml\
+| |---- postgres-service.yaml\
+|---|---- pgadmin.yaml\
 
 ## Funcionalidades:
 
@@ -47,7 +47,7 @@ projeto-final-asa/
 
 ## Como executar com Docker Compose:
 
-docker-compose up --build
+- docker-compose up --build
 
 => Acesse a documentação da API: http://localhost:5000/docs
 
@@ -61,19 +61,19 @@ eval $(minikube docker-env)
 
 2. Construa a imagem:
 
-docker build -t minikube_projeto_final_app:latest .
+- docker build -t minikube_projeto_final_app:latest .
 
 3. Aplique os manifestos Kubernetes:
 
-kubectl apply -f k8s/
+- kubectl apply -f k8s/
 
 4. Verifique se os pods estão rodando:
 
-kubectl get pods
+- kubectl get pods
 
 5. Quando todos estiverem como **Running**, acesse a API:
 
-minikube service fastapi-service
+- minikube service fastapi-service
 
 ## Requisitos:
 
