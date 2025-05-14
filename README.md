@@ -1,6 +1,6 @@
 # Sistema de Vendas de Passagens Aéreas
 
-Este é um sistema completo de venda de passagens aéreas desenvolvido utilizando a linguagem Python com **FastAPI**, banco de dados **PostgreSQL**, **Docker** e orquestração com **Kubernetes (Minikube)**.
+Este é um sistema completo de venda de passagens aéreas desenvolvido utilizando a linguagem **Python** com **FastAPI**, banco de dados **PostgreSQL**, **Docker** e orquestração com **Kubernetes (Minikube)**.
 
 ## Tecnologias Utilizadas:
 
