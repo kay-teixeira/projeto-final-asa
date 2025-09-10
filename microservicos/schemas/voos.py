@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from datetime import date, time
+from decimal import Decimal 
 
 
 class VooSchema(BaseModel):
@@ -11,7 +12,7 @@ class VooSchema(BaseModel):
     data_chegada: date
     hora_chegada: time
     companhia_aerea: str
-    preco: float
+    preco: Decimal
     assentos_disponíveis: int
 
     class Config:

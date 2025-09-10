@@ -1,6 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request, Security
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.orm import Session
-from microservicos.schemas.autenticacao import UsuarioCreate, LoginRequest, SessaoResponse
+from microservicos.schemas.autenticacao import UsuarioCreate, LoginRequest, SessaoResponse, UsuarioOut
 from microservicos.models.autenticacao import Usuario as UsuarioModel, Sessao as SessaoModel
 from microservicos.database import get_db
 from passlib.context import CryptContext
@@ -9,7 +10,20 @@ from datetime import datetime, timedelta
 import logging
 import colorlog
 
-router = APIRouter(prefix="/Autenticacao", tags=["Autenticação"])
+security = HTTPBearer()
+
+def get_current_user(token: HTTPAuthorizationCredentials = Security(security), db: Session = Depends(get_db)):
+    chave_sessao = token.credentials
+    sessao = db.query(SessaoModel).filter_by(chave_sessao=chave_sessao).first()
+    if not sessao or sessao.data_expiracao < datetime.utcnow():
+        raise HTTPException(status_code=401, detail="Token inválido ou expirado")
+    
+    usuario = db.query(UsuarioModel).filter_by(id=sessao.usuario_id).first()
+    if not usuario:
+        raise HTTPException(status_code=401, detail="Usuário não encontrado")
+    return usuario
+
+router = APIRouter(prefix="/autenticacao", tags=["Autenticação"])
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -24,8 +38,6 @@ logger.addHandler(handler)
 def registrar(usuario: UsuarioCreate, db: Session = Depends(get_db)):
     if db.query(UsuarioModel).filter_by(email=usuario.email).first():
         raise HTTPException(status_code=400, detail="Email já registrado.")
-    if db.query(UsuarioModel).filter_by(nome=usuario.nome).first():
-        raise HTTPException(status_code=400, detail="Nome de usuário já existe.")
     hashed = pwd_context.hash(usuario.senha)
     novo_usuario = UsuarioModel(nome=usuario.nome, email=usuario.email, senha=hashed)
     logger.info(f"Novo usuário registrado: {usuario.email}")
@@ -64,3 +76,8 @@ def verificar(chave_sessao: str, db: Session = Depends(get_db)):
         logger.info("Sessão inválida ou expirada.")
         raise HTTPException(status_code=401, detail="Sessão inválida ou expirada.")
     return {"status": "sessão válida"}
+
+@router.get("/me", response_model=UsuarioOut)
+def get_me(current_user: UsuarioModel = Depends(get_current_user)):
+    """Retorna os dados do usuário atualmente logado."""
+    return current_user

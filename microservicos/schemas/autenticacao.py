@@ -13,3 +13,11 @@ class LoginRequest(BaseModel):
 class SessaoResponse(BaseModel):
     chave_sessao: str
     data_expiracao: datetime
+
+class UsuarioOut(BaseModel):
+    id: int
+    nome: str
+    email: str
+
+    class Config:
+        from_attributes = True

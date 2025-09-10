@@ -6,7 +6,7 @@ from microservicos.models.aeroportos import Aeroporto as AeroportoModel
 import logging
 import colorlog
 
-router = APIRouter(prefix="/Aeroportos", tags=["Aeroportos"])
+router = APIRouter(prefix="/aeroportos", tags=["Aeroportos"])
 
 
 # Logger configurado
@@ -17,12 +17,12 @@ logger.setLevel(logging.DEBUG)
 logger.addHandler(handler)
 
 
-@router.get("/listar aeroporto", response_model=list[AeroportoSchema])
+@router.get("/", response_model=list[AeroportoSchema])
 def listar_aeroportos(db: Session = Depends(get_db)):
     logger.info("Listando todos os aeroportos.")
     return db.query(AeroportoModel).all()
 
-@router.get("/ buscar por código", response_model=AeroportoSchema)
+@router.get("/{codigo}", response_model=AeroportoSchema)
 def buscar_por_codigo(codigo: str, db: Session = Depends(get_db)):
     logger.info("Buscando aeroporto pelo código: %s", codigo)
     aeroporto = db.query(AeroportoModel).filter_by(codigo=codigo.upper()).first()
