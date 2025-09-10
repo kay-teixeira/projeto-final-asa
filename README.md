@@ -16,6 +16,7 @@ Este é um sistema completo de venda de passagens aéreas desenvolvido utilizand
 
 ## Estrutura dos Microserviços:
 
+```
 projeto-final-asa/
 |---- Dockerfile
 |---- docker-compose.yaml
@@ -35,7 +36,8 @@ projeto-final-asa/
 | |---- app-service.yaml
 | |---- postgres-deployment.yaml
 | |---- postgres-service.yaml
-|---|---- pgadmin.yaml
+| |---- pgadmin.yaml
+```
 
 ## Funcionalidades:
 
