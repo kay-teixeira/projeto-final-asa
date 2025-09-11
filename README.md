@@ -86,3 +86,6 @@ minikube service fastapi-service
 ## Autoria:
 
 Desenvolvido por Kaylane Raquel como parte do projeto final da disciplina de Arquitetura de Software Aplicada - Universidade Federal de Uberlândia (UFU).
+
+**LinkedIn**: https://www.linkedin.com/in/kaylane-raquel-2a3b501bb/ \
+**GitHub**: https://github.com/kay-teixeira
