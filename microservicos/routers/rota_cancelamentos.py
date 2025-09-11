@@ -5,7 +5,7 @@ from microservicos.models.reservas import Reserva as ReservaModel
 import logging
 import colorlog
 
-router = APIRouter(prefix = "/Cancelamentos",tags=["Cancelamentos"])
+router = APIRouter(prefix = "/cancelamentos",tags=["Cancelamentos"])
 
 # Logger configurado
 handler = colorlog.StreamHandler()
@@ -15,11 +15,10 @@ logger.setLevel(logging.DEBUG)
 logger.addHandler(handler)
 
 @router.delete("/")
-def cancelar_reserva(reserva_id: int, db: Session = Depends(get_db)):
-    logger.info("Cancelando reserva com ID: %s", reserva_id)
-    reserva = db.query(ReservaModel).filter_by(id=reserva_id).first()
+def cancelar_reserva(localizador: str, db: Session = Depends(get_db)):
+    logger.info("Cancelando reserva com localizador: %s", localizador)
+    reserva = db.query(ReservaModel).filter_by(localizador=localizador).first()
     if not reserva:
-        logger.info("Reserva não encontrada.")
         raise HTTPException(status_code=404, detail="Reserva não encontrada")
 
     db.delete(reserva)
